@@ -1,5 +1,5 @@
 /*
-*   Fichier de configuration de RatRuns
+*   RatRuns' configuration file
 */
 
 /* Buttons :
@@ -10,10 +10,11 @@
     Bottom_Roll
 */
 
-/* Les dimensions de la fenêtre captant les évènements */
+/* Size of the catching events window */
 static int window_width = 300;
 static int window_height = 300;
 
-static Binding bindings[] = { { /* The button to press */ Left_Click,
+static Binding bindings[] = {
+                              { /* The button to press */ Left_Click,
                                 /* The command to launch */ "xterm" }
                             };

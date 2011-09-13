@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <signal.h>
 #include <unistd.h>
 
@@ -23,14 +22,7 @@ static Display* dpy;
 
 void die(int sig) {
     XDestroyWindow(dpy, w);
-    exit(1);
-}
-
-void init() {
-    signal(SIGINT, die);
-    signal(SIGTERM, die);
-    signal(SIGSTOP, die);
-    signal(SIGHUP, die);
+    return;
 }
 
 void spawn(char* cmd) {
@@ -48,12 +40,16 @@ int main()
     if(!(dpy = XOpenDisplay(0x0))) return 1;
     root = DefaultRootWindow(dpy);
 
-    w = XCreateSimpleWindow(dpy, root, 100, 100, window_width, window_height, 0, 0, 0);
+    signal(SIGINT, die);
+    signal(SIGTERM, die);
+    signal(SIGSTOP, die);
+    signal(SIGHUP, die);
+
+    w = XCreateSimpleWindow(dpy, root, 0, 0, window_width, window_height, 0, 0, 0);
     XMapWindow(dpy, w);
 
     XSelectInput(dpy, w, ButtonPressMask|StructureNotifyMask);
 
-    init();
     XEvent ev;
     for(;;) {
         int i;
@@ -61,8 +57,8 @@ int main()
         XNextEvent(dpy, &ev);
 
         if(ev.type == DestroyNotify) {
-            printf("Destroyed\n");
-            exit(0);
+            printf("The window was destroyed\n");
+            return 0;
         } else if(ev.type == ButtonPress) {
             for(i=0; i < bindings_nb; i++) {
                 if(ev.xbutton.button == bindings[i].button) {
