@@ -6,8 +6,8 @@
     Left_Click
     Middle_Click
     Right_Click
-    Top_Roll
-    Bottom_Roll
+    Roll_Top
+    Roll_Bottom
 */
 
 /* Size of the catching events window */
