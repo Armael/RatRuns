@@ -1,0 +1,14 @@
+RatRuns
+=======
+
+Il s'agit d'un petit programme très simple démarrant une fenêtre, dans laquelle l'appui sur les boutons de la souris pourra lancer des commandes préconfigurées.
+
+La configuration se fait dans le fichier config.h, le programme devant ainsi être recompilé à chaque changement de configuration.
+Pour construire le programme, un simple 'make' fait l'affaire.
+
+------------------------
+
+This is a very simple program which starts an empty X window, in which mouse events (button press) can be catched and thus launch associated preconfigurated commands.
+
+Configuration takes place in config.h, so the program needs to be built each time the configuration changes.
+To build the binary, a simple 'make' does the job.
